@@ -1,12 +1,5 @@
 # 🛒 ShopEasy — Manual QA Testing Portfolio
 
-> End-to-end manual testing documentation for an e-commerce web application
-
-![Manual Testing](https://img.shields.io/badge/Manual_Testing-✓-brightgreen?style=for-the-badge)
-![Test Cases](https://img.shields.io/badge/Test_Cases-25+-blue?style=for-the-badge)
-![Bugs Found](https://img.shields.io/badge/Bugs_Found-6-red?style=for-the-badge)
-![Pass Rate](https://img.shields.io/badge/Pass_Rate-88%25-green?style=for-the-badge)
-
 ---
 
 ## 📋 Project Overview
@@ -24,27 +17,6 @@
 
 ---
 
-## 📁 Repository Structure
-
-```
-shopeasy-manual-testing/
-├── test-cases/
-│   ├── TC_login_registration.md
-│   ├── TC_shopping_cart.md
-│   ├── TC_checkout_payment.md
-│   └── TC_product_catalog.md
-├── bug-reports/
-│   ├── BUG-01_cart_not_saved.md
-│   ├── BUG-02_price_not_updated.md
-│   └── ...
-├── checklists/
-│   ├── smoke_checklist.md
-│   └── regression_checklist.md
-├── screenshots/
-└── README.md
-```
-
----
 
 ## 📊 Test Summary Dashboard
 
