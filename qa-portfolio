@@ -1,14 +1,63 @@
-README.md
+# 🛒 ShopEasy — Manual QA Testing Portfolio
+
+> End-to-end manual testing documentation for an e-commerce web application
+
+![Manual Testing](https://img.shields.io/badge/Manual_Testing-✓-brightgreen?style=for-the-badge)
+![Test Cases](https://img.shields.io/badge/Test_Cases-25+-blue?style=for-the-badge)
+![Bugs Found](https://img.shields.io/badge/Bugs_Found-6-red?style=for-the-badge)
+![Pass Rate](https://img.shields.io/badge/Pass_Rate-88%25-green?style=for-the-badge)
+
+---
 
 ## 📋 Project Overview
 
 | Field | Details |
 |-------|---------|
-| Project | ShopEasy — Online Store |
-| Type | Web Application |
-| Testing Type | Manual Testing |
-| Tools Used | Jira, TestRail, Postman, Chrome DevTools |
-| Environment | Windows 11, Chrome 120, Firefox 121 |
+| **Project** | ShopEasy — Online Store |
+| **Type** | Web Application (E-commerce) |
+| **Testing Type** | Manual Testing — Functional, Regression, Smoke, Negative |
+| **Tools Used** | Jira, TestRail, Postman, Chrome DevTools |
+| **Environment** | Windows 11 / Chrome 120 / Firefox 121 |
+| **Test Duration** | 2 weeks |
+| **Total Test Cases** | 25 |
+| **Bugs Reported** | 6 (2 High, 3 Medium, 1 Low) |
+
+---
+
+## 📁 Repository Structure
+
+```
+shopeasy-manual-testing/
+├── test-cases/
+│   ├── TC_login_registration.md
+│   ├── TC_shopping_cart.md
+│   ├── TC_checkout_payment.md
+│   └── TC_product_catalog.md
+├── bug-reports/
+│   ├── BUG-01_cart_not_saved.md
+│   ├── BUG-02_price_not_updated.md
+│   └── ...
+├── checklists/
+│   ├── smoke_checklist.md
+│   └── regression_checklist.md
+├── screenshots/
+└── README.md
+```
+
+---
+
+## 📊 Test Summary Dashboard
+
+| Module | Total | ✅ Pass | ❌ Fail | ⏸ Blocked |
+|--------|-------|---------|---------|-----------|
+| Login & Registration | 5 | 5 | 0 | 0 |
+| Shopping Cart | 5 | 4 | 1 | 0 |
+| Checkout & Payment | 7 | 5 | 2 | 0 |
+| Product Catalog | 5 | 5 | 0 | 0 |
+| User Profile | 3 | 3 | 0 | 0 |
+| **TOTAL** | **25** | **22** | **3** | **0** |
+
+**Overall Pass Rate: 88%**
 
 ---
 
@@ -16,11 +65,13 @@ README.md
 
 | ID | Title | Preconditions | Steps | Expected Result | Status |
 |----|-------|---------------|-------|-----------------|--------|
-| TC-01 | Successful login | User is registered | 1. Go to /login 2. Enter valid email & password 3. Click "Login" | User redirected to homepage | ✅ Pass |
-| TC-02 | Login with wrong password | User is registered | 1. Go to /login 2. Enter valid email + wrong password 3. Click "Login" | Error: "Invalid credentials" shown | ✅ Pass |
-| TC-03 | Login with empty fields | — | 1. Go to /login 2. Leave fields empty 3. Click "Login" | Validation error shown | ✅ Pass |
-| TC-04 | Successful registration | User not registered | 1. Go to /register 2. Fill all fields 3. Click "Register" | Confirmation email sent, user redirected | ✅ Pass |
-| TC-05 | Register with existing email | Email already in DB | 1. Go to /register 2. Enter existing email 3. Click "Register" | Error: "Email already exists" | ✅ Pass |
+| TC-01 | Successful login with valid credentials | User is registered | 1. Go to `/login` 2. Enter valid email & password 3. Click "Login" | User redirected to homepage, session started | ✅ Pass |
+| TC-02 | Login with incorrect password | User is registered | 1. Go to `/login` 2. Enter valid email + wrong password 3. Click "Login" | Error: *"Invalid credentials"* displayed | ✅ Pass |
+| TC-03 | Login with empty fields | — | 1. Go to `/login` 2. Leave all fields empty 3. Click "Login" | Inline validation errors shown on both fields | ✅ Pass |
+| TC-04 | Login with invalid email format | — | 1. Enter `notanemail` in email field 2. Click "Login" | Validation error: *"Enter a valid email address"* | ✅ Pass |
+| TC-05 | Successful user registration | Email not registered | 1. Go to `/register` 2. Fill all required fields 3. Click "Register" | Confirmation email sent; user redirected to homepage | ✅ Pass |
+| TC-06 | Register with already existing email | Email in DB | 1. Go to `/register` 2. Enter existing email 3. Click "Register" | Error: *"Email already exists"* | ✅ Pass |
+| TC-07 | Password reset flow | User is registered | 1. Click "Forgot password?" 2. Enter registered email 3. Submit | Reset link sent to email within 1 min | ✅ Pass |
 
 ---
 
@@ -28,91 +79,171 @@ README.md
 
 | ID | Title | Preconditions | Steps | Expected Result | Status |
 |----|-------|---------------|-------|-----------------|--------|
-| TC-06 | Add product to cart | User is logged in | 1. Open product page 2. Click "Add to Cart" | Product appears in cart with correct price | ✅ Pass |
-| TC-07 | Remove product from cart | Product in cart | 1. Open cart 2. Click "Remove" on product | Product removed, total price updated | ✅ Pass |
-| TC-08 | Change quantity in cart | Product in cart | 1. Open cart 2. Change quantity to 3 | Total price updated correctly | ✅ Pass |
-| TC-09 | Cart persists after logout | Product in cart | 1. Add product 2. Logout 3. Login again | Cart still contains added product | ❌ Fail |
-| TC-10 | Empty cart message | Cart is empty | 1. Open cart with no items | Message "Your cart is empty" shown | ✅ Pass |
+| TC-08 | Add product to cart | User is logged in | 1. Open product page 2. Click "Add to Cart" | Product appears in cart; item count in header updates | ✅ Pass |
+| TC-09 | Remove product from cart | Product in cart | 1. Open cart 2. Click "Remove" next to product | Product removed; total recalculated | ✅ Pass |
+| TC-10 | Change quantity using +/- buttons | Product in cart | 1. Open cart 2. Click "+" to increase quantity to 3 | Quantity updates; total price recalculates correctly | ✅ Pass |
+| TC-11 | Change quantity by typing manually | Product in cart | 1. Open cart 2. Type `5` directly in quantity field 3. Click outside | Total price recalculates to qty × unit price | ❌ Fail → [BUG-02](#bug-02--price-not-updated-on-manual-quantity-input) |
+| TC-12 | Cart persists after logout and re-login | Product in cart | 1. Add product 2. Logout 3. Login again 4. Open cart | Cart contains previously added item | ❌ Fail → [BUG-01](#bug-01--cart-cleared-after-re-login) |
+| TC-13 | Empty cart displays placeholder message | Cart is empty | 1. Open cart with no items | *"Your cart is empty"* message shown with CTA button | ✅ Pass |
+| TC-14 | Cart badge updates in real time | User is logged in | 1. Add 3 different products one by one | Header badge shows correct count after each addition | ✅ Pass |
+
+---
+
+## ✅ Test Cases — Checkout & Payment
+
+| ID | Title | Preconditions | Steps | Expected Result | Status |
+|----|-------|---------------|-------|-----------------|--------|
+| TC-15 | Complete checkout with valid card | Cart has items, user logged in | 1. Open cart → Checkout 2. Fill shipping info 3. Enter valid card 4. Place order | Order confirmed; confirmation email received | ✅ Pass |
+| TC-16 | Checkout with expired card | Cart has items | 1. Enter expired card number at payment step | Error: *"Card expired"* — order not placed | ✅ Pass |
+| TC-17 | Apply valid promo code | Valid code available | 1. At checkout enter valid code 2. Apply | Discount applied; total price reduced | ✅ Pass |
+| TC-18 | Apply invalid promo code | — | 1. Enter non-existent code 2. Apply | Error: *"Invalid or expired promo code"* | ✅ Pass |
+| TC-19 | Checkout without filling shipping address | — | 1. Skip address fields 2. Try to proceed | Validation errors on required fields | ✅ Pass |
+| TC-20 | Order total includes shipping cost | Cart < free shipping threshold | 1. View cart total 2. Proceed to checkout | Shipping fee added and displayed separately | ❌ Fail → [BUG-03](#bug-03--shipping-cost-not-added-in-cart-preview) |
 
 ---
 
 ## 🐛 Bug Reports
 
-### BUG-01 — Cart not saved after re-login
+### BUG-01 — Cart Cleared After Re-Login
 
 | Field | Details |
 |-------|---------|
 | **ID** | BUG-01 |
-| **Title** | Cart items disappear after logout and login |
-| **Severity** | High |
-| **Priority** | High |
+| **Title** | Cart items disappear after logout and re-login |
+| **Severity** | 🔴 High |
+| **Priority** | 🔴 High |
 | **Status** | Open |
-| **Environment** | Chrome 120, Windows 10 |
+| **Environment** | Chrome 120, Windows 11 |
+| **Module** | Shopping Cart / Session Management |
 | **Reported by** | QA Engineer |
+| **Linked TC** | TC-12 |
 
 **Steps to Reproduce:**
-1. Login to ShopEasy
-2. Add any product to cart
-3. Logout
-4. Login again
-5. Open cart
+1. Log in to ShopEasy
+2. Add any product to the cart
+3. Log out
+4. Log in with the same account
+5. Open the cart
 
-**Expected Result:** Cart should contain previously added items
+**Expected Result:** Cart should retain previously added items (server-side persistence)
 
-**Actual Result:** Cart is empty after re-login
+**Actual Result:** Cart is empty after re-login — items not saved to user session
 
-**Screenshot:** *(attached)*
+**Root Cause Hypothesis:** Cart stored in localStorage only; not synced to user account on server
+
+**Attachments:** `screenshot_bug01.png`
 
 ---
 
-### BUG-02 — Price not updated when changing quantity
+### BUG-02 — Price Not Updated on Manual Quantity Input
 
 | Field | Details |
 |-------|---------|
 | **ID** | BUG-02 |
-| **Title** | Total price does not recalculate when quantity is changed manually |
-| **Severity** | Medium |
-| **Priority** | Medium |
+| **Title** | Total price does not recalculate when quantity is typed manually |
+| **Severity** | 🟡 Medium |
+| **Priority** | 🟡 Medium |
 | **Status** | Open |
-| **Environment** | Firefox 121, Windows 10 |
+| **Environment** | Firefox 121, Windows 11 |
+| **Module** | Shopping Cart |
+| **Linked TC** | TC-11 |
 
 **Steps to Reproduce:**
-1. Add product to cart
-2. Open cart
-3. Manually type quantity (e.g. "5") instead of using +/- buttons
-4. Click outside the field
+1. Add any product to the cart
+2. Open the cart
+3. Click directly on the quantity field and type `5`
+4. Click outside the field (blur event)
 
-**Expected Result:** Total price updates to quantity × unit price
+**Expected Result:** Total price = unit price × 5
 
 **Actual Result:** Total price stays unchanged
 
+**Note:** Works correctly when using the `+/-` buttons — bug is specific to direct text input
+
 ---
 
-## 📝 Smoke Test Checklist — Main Functionality
+### BUG-03 — Shipping Cost Not Shown in Cart Preview
+
+| Field | Details |
+|-------|---------|
+| **ID** | BUG-03 |
+| **Title** | Shipping cost is not added to cart total before checkout |
+| **Severity** | 🟡 Medium |
+| **Priority** | 🟡 Medium |
+| **Status** | Open |
+| **Environment** | Chrome 120, Windows 11 |
+| **Module** | Cart / Checkout |
+| **Linked TC** | TC-20 |
+
+**Steps to Reproduce:**
+1. Add a product below the free-shipping threshold
+2. View cart total
+3. Proceed to checkout and compare totals
+
+**Expected Result:** Cart preview and checkout total both include shipping fee
+
+**Actual Result:** Shipping fee only appears at checkout — cart shows incorrect lower total
+
+---
+
+## 💨 Smoke Test Checklist
 
 | # | Check | Result |
 |---|-------|--------|
-| 1 | Homepage loads correctly | ✅ |
-| 2 | User can register | ✅ |
-| 3 | User can login | ✅ |
-| 4 | Product catalog displays | ✅ |
-| 5 | Product page opens | ✅ |
-| 6 | Add to cart works | ✅ |
-| 7 | Checkout page opens | ✅ |
-| 8 | Order can be placed | ✅ |
-| 9 | Logout works | ✅ |
-| 10 | Password reset email sent | ✅ |
+| 1 | Homepage loads without errors | ✅ |
+| 2 | User can register a new account | ✅ |
+| 3 | User can log in with valid credentials | ✅ |
+| 4 | Product catalog displays products | ✅ |
+| 5 | Product detail page opens correctly | ✅ |
+| 6 | Product can be added to cart | ✅ |
+| 7 | Cart icon updates after adding item | ✅ |
+| 8 | Checkout page loads | ✅ |
+| 9 | Order can be placed with valid card | ✅ |
+| 10 | Confirmation email is received | ✅ |
+| 11 | User can log out | ✅ |
+| 12 | Password reset email is sent | ✅ |
+
+**Smoke Test Result: ✅ PASS (12/12)**
 
 ---
 
-## 🔧 Tools & Skills Demonstrated
+## 🔁 Regression Checklist
 
-- **Test Design:** Test cases, checklists, test plans
-- **Bug Tracking:** Jira-style bug reports with severity/priority
-- **API Testing:** Postman (REST API)
-- **Methodologies:** Agile / Scrum
-- **Browsers:** Chrome, Firefox
-- **OS:** Windows 11
+| # | Area | Check | Result |
+|---|------|-------|--------|
+| 1 | Auth | BUG-01 fix: cart persists after re-login | ⏳ Pending |
+| 2 | Cart | BUG-02 fix: manual quantity input recalculates total | ⏳ Pending |
+| 3 | Checkout | BUG-03 fix: shipping shown in cart preview | ⏳ Pending |
+| 4 | Auth | Login with valid credentials still works | ✅ |
+| 5 | Cart | Add/remove products still works | ✅ |
+| 6 | Payment | Valid card checkout still works | ✅ |
+
+---
+
+## 🧠 Test Design Techniques Used
+
+| Technique | Applied To |
+|-----------|-----------|
+| **Equivalence Partitioning** | Login fields, quantity input, promo codes |
+| **Boundary Value Analysis** | Cart quantity limits, price thresholds |
+| **Negative Testing** | Invalid credentials, expired cards, wrong formats |
+| **Exploratory Testing** | Cart persistence, payment edge cases |
+| **Smoke Testing** | Core user flows after each deployment |
+| **Regression Testing** | Verifying bug fixes don't break existing features |
+
+---
+
+## 🛠️ Tools & Skills Demonstrated
+
+| Category | Tools / Skills |
+|----------|---------------|
+| **Test Management** | TestRail, Google Sheets |
+| **Bug Tracking** | Jira |
+| **API Testing** | Postman — request validation, status codes |
+| **Browser Tools** | Chrome DevTools — network, console, storage |
+| **Methodologies** | Agile / Scrum, sprint-based testing |
+| **OS / Browsers** | Windows 11, Chrome 120, Firefox 121 |
+| **Documentation** | Test plans, test cases, bug reports, checklists |
 
 ---
 
