@@ -42,7 +42,112 @@
 <img width="2423" height="1533" alt="Screenshot_4" src="https://github.com/user-attachments/assets/d3c78267-d34e-49f0-af9a-fdb3e2342402" />
 
 
-<img width="2838" height="1530" alt="Screenshot_8" src="https://github.com/user-attachments/assets/5d3c946e-eea5-406b-9c71-f7895448ec16" />
+
+
+
+# 🗂️ Manual Testing Documentation
+## 📌 Project Overview
+
+This section covers **manual QA documentation** for a Financial Payments Platform, including:
+- Detailed test case tables with priority, status, and expected results
+- End-to-end functional testing of business flows
+- Regression and smoke test checklists
+- Bug reports with reproduction steps
+
+  ## ✅ Test Case Structure
+
+Each test case follows this format:
+
+| Field | Description |
+|-------|-------------|
+| **Test ID** | Unique identifier (e.g., TC-001) |
+| **Testing Object** | Feature/module under test |
+| **Test Case Name** | Short description of what is tested |
+| **Preconditions** | Required state before test execution |
+| **Priority** | High / Medium / Low |
+| **Type** | Functional / Regression / Smoke / Negative |
+| **Status** | Passed / Failed / Blocked / Not Run |
+| **Steps** | Numbered test execution steps |
+| **Expected Result** | What should happen |
+| **Actual Result** | What actually happened |
+| **Evidence** | Screenshot or video link |
+
+---
+### Test Types Distribution
+
+| Type | Count |
+|------|-------|
+| ✅ Functional | 55 |
+| 🔁 Regression | 25 |
+| 💨 Smoke | 12 |
+| ❌ Negative | 10 |
+
+---
+## 🐛 Bug Report Example
+
+```
+ID:           BUG-042
+Title:        Payment creation fails when currency is EUR and amount > 10,000
+Severity:     High
+Priority:     High
+Status:       Open
+Environment:  Staging / Chrome 122
+
+Steps to Reproduce:
+  1. Navigate to Payments → Create New Payment
+  2. Set currency = EUR
+  3. Enter amount = 15000
+  4. Click "Submit"
+
+Expected Result:
+  Payment is created successfully with status "Pending"
+
+Actual Result:
+  Error 422 returned — "Amount exceeds limit" (no limit documented)
+
+Attachments:
+  - screenshot_bug042.png
+  - network_log_bug042.har
+```
+
+---
+
+## 💨 Smoke Test Checklist
+
+- [ ] Platform loads without errors
+- [ ] User can log in with valid credentials
+- [ ] Dashboard displays account balance
+- [ ] Create new payment — basic flow
+- [ ] View transaction history
+- [ ] Business functions list loads
+- [ ] Document upload works
+
+---
+
+## 🔁 Regression Checklist
+
+- [ ] All previously fixed bugs remain fixed
+- [ ] Payment flow: create → submit → confirm
+- [ ] Multi-currency: USD, EUR, GBP conversions
+- [ ] Transaction filters: date, status, amount
+- [ ] Business function: create → assign → complete
+- [ ] Error handling: invalid inputs return correct error codes
+- [ ] Pagination works on transactions list (25/50/100 per page)
+
+---
+
+## 🛠️ Tools Used
+
+| Tool | Purpose |
+|------|---------|
+| **Google Sheets / Excel** | Test case management |
+| **Jira** | Bug tracking & project management |
+| **Postman** | API response validation during manual tests |
+| **Chrome DevTools** | Network log inspection |
+| **Loom / Screenshots** | Test evidence capture |
+
+---
+
 
 
 <img width="2817" height="1382" alt="Screenshot_13" src="https://github.com/user-attachments/assets/e540cb67-c408-4711-834f-6958df0c3779" />
