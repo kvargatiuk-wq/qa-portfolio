@@ -9,8 +9,6 @@
 
 <img width="2868" height="1460" alt="Screenshot_4" src="https://github.com/user-attachments/assets/42b3ded9-ff95-4209-87ed-8688d02bf707" />
 
-<img width="522" height="1479" alt="Screenshot_7" src="https://github.com/user-attachments/assets/b456b6d9-32a6-4613-a377-7b9bf658baf5" />
-
 <img width="2246" height="1479" alt="Screenshot_5" src="https://github.com/user-attachments/assets/02587545-01fa-4000-aead-b217b05bb030" />
 
 
