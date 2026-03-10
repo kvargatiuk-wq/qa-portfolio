@@ -1,0 +1,120 @@
+README.md
+
+## 📋 Project Overview
+
+| Field | Details |
+|-------|---------|
+| Project | ShopEasy — Online Store |
+| Type | Web Application |
+| Testing Type | Manual Testing |
+| Tools Used | Jira, TestRail, Postman, Chrome DevTools |
+| Environment | Windows 11, Chrome 120, Firefox 121 |
+
+---
+
+## ✅ Test Cases — Login & Registration
+
+| ID | Title | Preconditions | Steps | Expected Result | Status |
+|----|-------|---------------|-------|-----------------|--------|
+| TC-01 | Successful login | User is registered | 1. Go to /login 2. Enter valid email & password 3. Click "Login" | User redirected to homepage | ✅ Pass |
+| TC-02 | Login with wrong password | User is registered | 1. Go to /login 2. Enter valid email + wrong password 3. Click "Login" | Error: "Invalid credentials" shown | ✅ Pass |
+| TC-03 | Login with empty fields | — | 1. Go to /login 2. Leave fields empty 3. Click "Login" | Validation error shown | ✅ Pass |
+| TC-04 | Successful registration | User not registered | 1. Go to /register 2. Fill all fields 3. Click "Register" | Confirmation email sent, user redirected | ✅ Pass |
+| TC-05 | Register with existing email | Email already in DB | 1. Go to /register 2. Enter existing email 3. Click "Register" | Error: "Email already exists" | ✅ Pass |
+
+---
+
+## ✅ Test Cases — Shopping Cart
+
+| ID | Title | Preconditions | Steps | Expected Result | Status |
+|----|-------|---------------|-------|-----------------|--------|
+| TC-06 | Add product to cart | User is logged in | 1. Open product page 2. Click "Add to Cart" | Product appears in cart with correct price | ✅ Pass |
+| TC-07 | Remove product from cart | Product in cart | 1. Open cart 2. Click "Remove" on product | Product removed, total price updated | ✅ Pass |
+| TC-08 | Change quantity in cart | Product in cart | 1. Open cart 2. Change quantity to 3 | Total price updated correctly | ✅ Pass |
+| TC-09 | Cart persists after logout | Product in cart | 1. Add product 2. Logout 3. Login again | Cart still contains added product | ❌ Fail |
+| TC-10 | Empty cart message | Cart is empty | 1. Open cart with no items | Message "Your cart is empty" shown | ✅ Pass |
+
+---
+
+## 🐛 Bug Reports
+
+### BUG-01 — Cart not saved after re-login
+
+| Field | Details |
+|-------|---------|
+| **ID** | BUG-01 |
+| **Title** | Cart items disappear after logout and login |
+| **Severity** | High |
+| **Priority** | High |
+| **Status** | Open |
+| **Environment** | Chrome 120, Windows 10 |
+| **Reported by** | QA Engineer |
+
+**Steps to Reproduce:**
+1. Login to ShopEasy
+2. Add any product to cart
+3. Logout
+4. Login again
+5. Open cart
+
+**Expected Result:** Cart should contain previously added items
+
+**Actual Result:** Cart is empty after re-login
+
+**Screenshot:** *(attached)*
+
+---
+
+### BUG-02 — Price not updated when changing quantity
+
+| Field | Details |
+|-------|---------|
+| **ID** | BUG-02 |
+| **Title** | Total price does not recalculate when quantity is changed manually |
+| **Severity** | Medium |
+| **Priority** | Medium |
+| **Status** | Open |
+| **Environment** | Firefox 121, Windows 10 |
+
+**Steps to Reproduce:**
+1. Add product to cart
+2. Open cart
+3. Manually type quantity (e.g. "5") instead of using +/- buttons
+4. Click outside the field
+
+**Expected Result:** Total price updates to quantity × unit price
+
+**Actual Result:** Total price stays unchanged
+
+---
+
+## 📝 Smoke Test Checklist — Main Functionality
+
+| # | Check | Result |
+|---|-------|--------|
+| 1 | Homepage loads correctly | ✅ |
+| 2 | User can register | ✅ |
+| 3 | User can login | ✅ |
+| 4 | Product catalog displays | ✅ |
+| 5 | Product page opens | ✅ |
+| 6 | Add to cart works | ✅ |
+| 7 | Checkout page opens | ✅ |
+| 8 | Order can be placed | ✅ |
+| 9 | Logout works | ✅ |
+| 10 | Password reset email sent | ✅ |
+
+---
+
+## 🔧 Tools & Skills Demonstrated
+
+- **Test Design:** Test cases, checklists, test plans
+- **Bug Tracking:** Jira-style bug reports with severity/priority
+- **API Testing:** Postman (REST API)
+- **Methodologies:** Agile / Scrum
+- **Browsers:** Chrome, Firefox
+- **OS:** Windows 11
+
+---
+
+
+
