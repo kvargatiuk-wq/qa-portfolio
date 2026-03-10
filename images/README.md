@@ -1,4 +1,13 @@
+# API Testing
+## 🔧 Tools
+- Postman
+- Newman (CLI runner)
+- GitHub Actions (CI)
 
+  ## 📊 Coverage
+- Authentication endpoints: 10 tests
+- Products API: 25 tests  
+- Orders API: 15 tests
 <img width="2423" height="1533" alt="Screenshot_4" src="https://github.com/user-attachments/assets/d3c78267-d34e-49f0-af9a-fdb3e2342402" />
 
 
